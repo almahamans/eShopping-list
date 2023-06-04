@@ -1,0 +1,32 @@
+@mixin center-text{
+    text-align: center;
+}
+
+@mixin center-div{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@mixin font-size-large{
+    font-size: clamp(3em, 5vw, 6em);
+}
+
+@mixin font-size-md{
+    font-size: clamp(1.5em, 3vw, 2em);
+}
+
+@mixin font-size-sm{
+    font-size: clamp(1em, 1.8vw, 2em);
+}
+
+@mixin div-width{
+    width: calc(100vw - 45vw);
+}
+
+$pink: #ff99cc;
+$purple: #9933ff;
+$darkPurple: #692aa7;
