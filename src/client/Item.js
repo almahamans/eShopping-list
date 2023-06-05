@@ -1,3 +1,5 @@
+import '../styles/item.scss';
+
 export default function Item({item, onRemove}) {
 return(
     <li className="item-style">
