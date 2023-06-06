@@ -5,10 +5,21 @@
 margin: 0;   
 }
 
-h1{
-@include center-text;
-background: linear-gradient(to bottom left, $purple 0%, $pink 100%);
-padding: 5%;
-@include font-size-large;
-font-family: 'Rubik Puddles', cursive;
+header{
+    background: linear-gradient(to bottom left, $purple 0%, $pink 100%);
+    padding: 3%;
+
+    h1{
+    @include center-text;
+    @include font-size-large;
+    font-family: 'Rubik Puddles', cursive;
+    }
+
+    .icons{
+        color: "#000000";
+        cursor: pointer;
+        margin-left: calc(90vw - 30px);
+        display: inline-flex;
+        @include font-size-md;
+    }    
 }

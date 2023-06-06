@@ -16,23 +16,22 @@ h2{
 
 #show-inputs{
     padding-top: 4%;
+    @include container-width;
 
     input{
     padding: 2% 0 2% 0;
-    @include div-width;
+    @include element-width;
     @include center-text;
     @include font-size-sm;
-    z-index: -1;
     }
 
     #add-btn{
         position: absolute;
-        z-index: 1;
-        background-color: rgb(250, 246, 246);
-        border: .5px gray solid;
+        background-color: inherit;
+        border: none;
         padding: 1.3%;
         @include font-size-sm;
-        color: black;
+        color: grey;
         cursor: pointer;
         font-weight: bold;
     }

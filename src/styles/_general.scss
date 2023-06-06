@@ -24,10 +24,48 @@
 }
 
 @mixin div-width{
-    width: calc(100vw - 45vw);
+    width: calc(60vw + 10px); //use calc to make width be responsive and easy set positin and make sure fit container
 }
+
+@mixin container-width{
+    width: calc(690% / 6);
+}
+
+@mixin element-width{
+    width: calc(100% - 1em);
+}
+
 
 $pink: #ff99cc;
 $purple: #9933ff;
 $darkPurple: #692aa7;
 $red: #fa3535;
+
+.darkMood{
+    background-color: rgb(85, 49, 119);
+
+    h2{
+        color: #cb97ff;
+        font-weight: 600;
+    }
+
+    input::placeholder{
+       color: $pink;
+    }
+    input{
+        background-color: inherit;
+        color: $pink;
+    }
+    #show-inputs{
+    #add-btn{
+        background-color: inherit;
+        color: #cb97ff;
+        border: none;
+    }
+    }
+
+    .item-style{
+        color: $pink;
+    }
+
+}
