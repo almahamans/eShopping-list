@@ -16,6 +16,7 @@ export default function App() {
     //remove one item at a time
     let onRemove = (itemRemove) => {
         setItems(items.filter((i) => i !== itemRemove));
+        setCountItem(countItem - 1);
     }
 
     //handle form inputs and store it in state(array)
