@@ -3,17 +3,62 @@
 .item-style{
     list-style: none;
     padding: 1%;
+    margin: 1%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: nowrap;
     @include font-size-sm;
+    @include div-width;
 
-    button{
+.status{
+        display: flex;
+        gap: 5px;
+}
+button{
         cursor: pointer;
         background: inherit;
         border: none;
         color: $red;
         font-weight: 900;
+}
+}
+.red{
+    @include dot;
+    background-color:red;
+}
+.redBg{
+    li{
+        background-color:#ff6e6e47;
     }
+}
 
+.green{
+    @include dot;
+    background-color: green;
+}
+.greenBg{
+    li{
+        background-color:#6eff8947;
+    }
+}
+
+.yellow{
+    @include dot;
+    background-color: yellow;
+}
+.yellBg{
+    li{
+        background-color:#e7e95e47;
+    }
+}
+
+.grey{
+    @include dot;
+    background-color: grey;
+}
+.greyBg{
+    li{
+        background-color:#aea7a73d;
+    }
 }

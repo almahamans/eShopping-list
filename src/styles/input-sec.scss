@@ -12,10 +12,11 @@ h2{
     color: $darkPurple;
     @include font-size-md;
     font-weight:100;
+    margin-top: 2%;
 }
 
 #show-inputs{
-    padding-top: 4%;
+    padding-top: 1%;
     @include container-width;
 
     input{

@@ -35,6 +35,12 @@
     width: calc(100% - 1em);
 }
 
+@mixin dot{
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    cursor: pointer;   
+}
 
 $pink: #ff99cc;
 $purple: #9933ff;
@@ -63,7 +69,6 @@ $red: #fa3535;
         border: none;
     }
     }
-
     .item-style{
         color: $pink;
     }

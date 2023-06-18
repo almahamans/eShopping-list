@@ -21,5 +21,11 @@ header{
         margin-left: calc(90vw - 30px);
         display: inline-flex;
         @include font-size-md;
-    }    
+    }     
 }
+
+.p{
+        @include center-text;
+        margin-bottom: -3%;
+        font-family: cursive;
+} 

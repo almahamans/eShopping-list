@@ -34,10 +34,6 @@ export default function App() {
     useEffect(()=>{
         localStorage.setItem('items', JSON.stringify(items))
     }, [items])
-//return number of items
-    let onCount = () => {
-      return countItem
-    }
 //keep track of number of items and store it in localStorage
     useEffect(()=>{
         localStorage.setItem('countItems', JSON.stringify(countItem))
@@ -46,29 +42,31 @@ export default function App() {
     useEffect(() => {
         if(darkMode){
             document.body.classList.add('darkMood')
-        } 
+        }
     }, [darkMode])
 
     useEffect(() => {
         if(darkMode){
             document.body.classList.remove('darkMood')
         }
-    }, [lightMode])
+    }, [lightMode])  
+//edit item
 
  return(
     <>
     <header>
-    <h1>MY SHOPPING LIST</h1>
+    <h1>NOTES</h1>
     <section className="icons">
     <FontAwesomeIcon icon={faMoon} onClick={()=>{ setDarkMode(!darkMode)}} />
     <FontAwesomeIcon icon={faSun}  onClick={()=>{ setLightMode(!lightMode)}}/>   
     </section>
+    <p className="p">arrange your thoughts/tasks with NOTES app</p>
     </header>
     <section id="list">
-    <h2> {onCount()} Items to buy:</h2>
+    <h2> {countItem} Note:</h2>
     <section id="show-inputs">
     <form onSubmit={onSubmit}>
-        <input type="text" name="item" placeholder="add an item to the list" autoComplete="no" required />
+        <input type="text" name="item" placeholder="add a note" autoComplete="no" aria-label="add a note" required />
         <button id="add-btn" onClick={()=> setCountItem(countItem + 1)}>add</button>
     </form>
     <ul id="items">
