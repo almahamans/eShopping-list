@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Item from "./Item";
 import '../styles/header.scss'
 import '../styles/input-sec.scss'
@@ -23,12 +23,19 @@ export default function App() {
     }
 //handle form inputs and store it in state(array)
     let onSubmit = (e) => {
-        e.preventDefault();
         const form = e.target;
         const input = form.item; //take name of the input feild
         const newItem = [...items, input.value];//adding new items to the exsits; easer to handle any change in the array
         setItems(newItem);
         form.reset();
+    }
+ //prevent count up when nothing entered
+    const inputRef = useRef(null) //manipulate DOM useing ref
+    let handleCount = (e) => {
+        e.preventDefault();
+        if(inputRef !== ''){
+            setCountItem(countItem + 1)
+        }
     }
 //keep track of items and store it in localStorage
     useEffect(()=>{
@@ -60,19 +67,19 @@ export default function App() {
     <FontAwesomeIcon icon={faMoon} onClick={()=>{ setDarkMode(!darkMode)}} />
     <FontAwesomeIcon icon={faSun}  onClick={()=>{ setLightMode(!lightMode)}}/>   
     </section>
-    <p className="p">arrange your thoughts/tasks with NOTES app</p>
+    <p className="p">arrange your day with NOTES app</p>
     </header>
     <section id="list">
-    <h2> {countItem} Note:</h2>
+    <h2> {countItem} Notes:</h2>
     <section id="show-inputs">
     <form onSubmit={onSubmit}>
-        <input type="text" name="item" placeholder="add a note" autoComplete="no" aria-label="add a note" required />
-        <button id="add-btn" onClick={()=> setCountItem(countItem + 1)}>add</button>
+        <input type="text" ref={inputRef} name="item" placeholder="add a note" autoComplete="no" aria-label="add a note" onKeyDown={(e)=>{e.key === 'Enter' && e.preventDefault();}} required />
+        <button id="add-btn" onClick={()=> handleCount}>add</button>
     </form>
     <ul id="items">
         {/* make map/loop on items state to display it in list */}
     {items.map((item, index) => (
-        <Item key={item + index} item={item} onRemove={onRemove} />
+        <Item key={index} item={item} onRemove={onRemove} />
     ))}
     </ul>
     </section>

@@ -1,83 +1,86 @@
 import '../styles/item.scss';
 import { Tooltip } from 'react-tooltip';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faEllipsisH, faCheck, faXmark} from '@fortawesome/free-solid-svg-icons';
 
 export default function Item({item, onRemove}) {
     // const redItems = JSON.parse(localStorage.getItem('redItem'))
     // const greenItems = JSON.parse(localStorage.getItem('greenItem'))
     // const yelloItems = JSON.parse(localStorage.getItem('yellItem'))
     // const greyItems = JSON.parse(localStorage.getItem('greyItem'))
-    
-    const [red, setRed] = useState(false)
-    const [green, setGreen] = useState(false)
-    const [yellow, setYell] = useState(false)
-    const [grey, setGrey] = useState(false)
-//red status
-    const onRed = () => {
-        if(!red){
-        document.body.classList.add('redBg')
-        setRed(true)        
-    } else {
-        document.body.classList.remove('redBg')
-        setRed(false)
-        }
-    }
-    // useEffect(()=>{
-    //     localStorage.setItem('redItem', JSON.stringify(red))
-    // },[red])
-//green status
-    const onGreen = () => {
-        if(!green){
-          document.body.classList.add('greenBg')
-          setGreen(true)  
-        } else {
-        document.body.classList.remove('greenBg')
-        setGreen(false) 
-        }   
-    }
-    // useEffect(()=>{
-    //     localStorage.setItem('greenItem', JSON.stringify(green))
-    // },[green])
-//yellow status
-    const onYell = () => {
-        if(!yellow){
-           document.body.classList.add('yellBg')
-           setYell(true) 
-        } else {
-            document.body.classList.remove('yellBg')
-            setYell(false) 
-        }  
-    }
-    // useEffect(()=>{
-    //     localStorage.setItem('yellItem', JSON.stringify(yellow))
-    // },[yellow])
-//grey status
-    const onGrey = () => {
-        if(!grey){
-         document.body.classList.add('greyBg')
-         setGrey(true)   
-        } else {
-            document.body.classList.remove('greyBg')
-            setGrey(false)   
-        }  
-    }
-    // useEffect(()=>{
-    //     localStorage.setItem('greyItem', JSON.stringify(grey))
-    // },[grey])
 
+    const [isRed, setIsActiveRed] = useState(false)
+    const [isGreen, setIsActiveGreen] = useState(false)
+    const [isYell, setIsActiveYell] = useState(false)
+    const [isGrey, setIsActiveGrey] = useState(false)
+
+    const handleClickRed = () => {
+        setIsActiveRed(c => !c)
+        setIsActiveGreen(false)
+        setIsActiveGrey(false)
+        setIsActiveYell(false)
+    }
+    const handleClickGreen = () => {
+        setIsActiveGreen(c => !c)
+        setIsActiveGrey(false)
+        setIsActiveYell(false)
+        setIsActiveRed(false)
+    }
+    const handleClickYell = () => {
+        setIsActiveYell(c => !c)
+        setIsActiveRed(false)
+        setIsActiveGreen(false)
+        setIsActiveGrey(false)
+    }
+    const handleClickGrey = () => {
+        setIsActiveGrey(c => !c)
+        setIsActiveYell(false)
+        setIsActiveRed(false)
+        setIsActiveGreen(false)
+    }
     
+// //red status
+//     useEffect(()=>{
+//         localStorage.setItem('redItem', JSON.stringify(isRed))
+//     },[isRed])
+// // //green status
+//     useEffect(()=>{
+//         localStorage.setItem('greenItem', JSON.stringify(isGreen))
+//     },[isGreen])
+// // // //yellow status
+//     useEffect(()=>{
+//         localStorage.setItem('yellItem', JSON.stringify(isYell))
+//     },[isYell])
+// // //grey status
+//     useEffect(()=>{
+//         localStorage.setItem('greyItem', JSON.stringify(isGrey))
+//     },[isGrey])
+ 
 return(
-    <li className="item-style">
+    <li className="item-style" style={{backgroundColor: isRed ? '#ff6e6e47' :  '' || isGreen ? '#6eff8947' : '' || isYell ? '#e7e95e47' : '' || isGrey ? '#aea7a73d' : ''}}>
+        <span style={{textDecoration: isYell ? 'underline' : '' || isGreen ? 'line-through' : '', letterSpacing: isYell ? '3px' : '', fontWeight: isYell ? 'bold' : ''}}>
+        {isRed && <FontAwesomeIcon icon={faXmark} style={{color: "#d01b1b"}}/>}
+        {' '}
         {item}
+        {' '}  
+        {
+            isGrey && <FontAwesomeIcon icon={faEllipsisH} style={{color: "#757575"}} /> 
+            ||
+            isGreen && <FontAwesomeIcon icon={faCheck} style={{color: "#369162"}} />
+            ||
+            isRed && <FontAwesomeIcon icon={faXmark} style={{color: "#d01b1b"}} />
+        }
+        </span>
         <section className='status'>
         <Tooltip id="tooltip-red"/>
-        <span data-tooltip-id="tooltip-red" data-tooltip-content="Uncompleted" className='red' onClick={onRed}></span>
+        <span data-tooltip-id="tooltip-red" data-tooltip-content="Uncompleted" className='red'  onClick={handleClickRed}></span>
         <Tooltip id="tooltip-green"/>
-        <span data-tooltip-id="tooltip-green" data-tooltip-content="Completed" className='green' onClick={onGreen}></span>
+        <span data-tooltip-id="tooltip-green" data-tooltip-content="Completed" className='green' onClick={handleClickGreen}></span>
         <Tooltip id="tooltip-yellow"/>
-        <span data-tooltip-id="tooltip-yellow" data-tooltip-content="Urgent" className='yellow' onClick={onYell}></span>
+        <span data-tooltip-id="tooltip-yellow" data-tooltip-content="Urgent" className='yellow' onClick={handleClickYell}></span>
         <Tooltip id="tooltip-grey"/>
-        <span data-tooltip-id="tooltip-grey" data-tooltip-content="Inprogress" className='grey' onClick={onGrey}></span>
+        <span data-tooltip-id="tooltip-grey" data-tooltip-content="In progress" className='grey' onClick={handleClickGrey}></span>
         <Tooltip id="tooltip-btn"/>
         <button data-tooltip-id="tooltip-btn" data-tooltip-content="Delete" onClick={() => onRemove(item)}>X</button>
         </section>
