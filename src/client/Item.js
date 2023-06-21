@@ -1,8 +1,8 @@
 import '../styles/item.scss';
 import { Tooltip } from 'react-tooltip';
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faEllipsisH, faCheck, faXmark} from '@fortawesome/free-solid-svg-icons';
+import {faEllipsisH, faCheck, faXmark, faEdit} from '@fortawesome/free-solid-svg-icons';
 
 export default function Item({item, onRemove}) {
     // const redItems = JSON.parse(localStorage.getItem('redItem'))
@@ -14,6 +14,11 @@ export default function Item({item, onRemove}) {
     const [isGreen, setIsActiveGreen] = useState(false)
     const [isYell, setIsActiveYell] = useState(false)
     const [isGrey, setIsActiveGrey] = useState(false)
+
+    const [editText,setEditText ] = useState(false);
+    function editComment(){
+        setEditText(wasEdit => !wasEdit);
+    }
 
     const handleClickRed = () => {
         setIsActiveRed(c => !c)
@@ -39,7 +44,6 @@ export default function Item({item, onRemove}) {
         setIsActiveRed(false)
         setIsActiveGreen(false)
     }
-    
 // //red status
 //     useEffect(()=>{
 //         localStorage.setItem('redItem', JSON.stringify(isRed))

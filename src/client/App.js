@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Item from "./Item";
 import '../styles/header.scss'
 import '../styles/input-sec.scss'
@@ -29,14 +29,6 @@ export default function App() {
         setItems(newItem);
         form.reset();
     }
- //prevent count up when nothing entered
-    const inputRef = useRef(null) //manipulate DOM useing ref
-    let handleCount = (e) => {
-        e.preventDefault();
-        if(inputRef !== ''){
-            setCountItem(countItem + 1)
-        }
-    }
 //keep track of items and store it in localStorage
     useEffect(()=>{
         localStorage.setItem('items', JSON.stringify(items))
@@ -57,8 +49,6 @@ export default function App() {
             document.body.classList.remove('darkMood')
         }
     }, [lightMode])  
-//edit item
-
  return(
     <>
     <header>
@@ -69,21 +59,21 @@ export default function App() {
     </section>
     <p className="p">arrange your day with NOTES app</p>
     </header>
-    <section id="list">
+    <main id="list">
     <h2> {countItem} Notes:</h2>
     <section id="show-inputs">
     <form onSubmit={onSubmit}>
-        <input type="text" ref={inputRef} name="item" placeholder="add a note" autoComplete="no" aria-label="add a note" onKeyDown={(e)=>{e.key === 'Enter' && e.preventDefault();}} required />
-        <button id="add-btn" onClick={()=> handleCount}>add</button>
+        <input type="text" name="item" placeholder="add a note" autoComplete="off" aria-labelledby="add a note" onKeyDown={(e)=>{e.key === 'Enter' && e.preventDefault();}} required />
+        <button id="add-btn" onClick={()=>{items !== '' && setCountItem(countItem + 1)}} aria-pressed="true">add</button>
     </form>
-    <ul id="items">
+    <ul id="items" aria-labelledby="items list">
         {/* make map/loop on items state to display it in list */}
     {items.map((item, index) => (
         <Item key={index} item={item} onRemove={onRemove} />
     ))}
     </ul>
     </section>
-    </section>
+    </main>
     </>
  )
 };
