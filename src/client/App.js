@@ -66,9 +66,9 @@ export default function App() {
         <input type="text" name="item" placeholder="add a note" autoComplete="off" aria-labelledby="add a note" onKeyDown={(e)=>{e.key === 'Enter' && e.preventDefault();}} required />
         <button id="add-btn" onClick={()=>{items !== '' && setCountItem(countItem + 1)}} aria-pressed="true">add</button>
     </form>
-    <ul id="items" aria-labelledby="items list">
+     <ul id="items" aria-labelledby="items list">
         {/* make map/loop on items state to display it in list */}
-    {items.map((item, index) => (
+     {items.map((item, index) => (
         <Item key={index} item={item} onRemove={onRemove} />
     ))}
     </ul>
