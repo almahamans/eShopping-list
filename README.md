@@ -18,4 +18,4 @@ An app to arrange your thought and tasks through the day. User able to add a not
 
 
   #### Future work
-  create editing note function, adjust the dark mode and update localStorage
+  create editing note function and update localStorage
