@@ -2,23 +2,13 @@ import '../styles/item.scss';
 import { Tooltip } from 'react-tooltip';
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faEllipsisH, faCheck, faXmark, faEdit} from '@fortawesome/free-solid-svg-icons';
+import {faEllipsisH, faCheck, faXmark} from '@fortawesome/free-solid-svg-icons';
 
-export default function Item({item, onRemove}) {
-    // const redItems = JSON.parse(localStorage.getItem('redItem'))
-    // const greenItems = JSON.parse(localStorage.getItem('greenItem'))
-    // const yelloItems = JSON.parse(localStorage.getItem('yellItem'))
-    // const greyItems = JSON.parse(localStorage.getItem('greyItem'))
-
-    const [isRed, setIsActiveRed] = useState(false)
+export default function Item({item, onRemove}) { 
+     const [isRed, setIsActiveRed] = useState(false)
     const [isGreen, setIsActiveGreen] = useState(false)
     const [isYell, setIsActiveYell] = useState(false)
     const [isGrey, setIsActiveGrey] = useState(false)
-
-    const [editText,setEditText ] = useState(false);
-    function editComment(){
-        setEditText(wasEdit => !wasEdit);
-    }
 
     const handleClickRed = () => {
         setIsActiveRed(c => !c)
@@ -43,24 +33,7 @@ export default function Item({item, onRemove}) {
         setIsActiveYell(false)
         setIsActiveRed(false)
         setIsActiveGreen(false)
-    }
-// //red status
-//     useEffect(()=>{
-//         localStorage.setItem('redItem', JSON.stringify(isRed))
-//     },[isRed])
-// // //green status
-//     useEffect(()=>{
-//         localStorage.setItem('greenItem', JSON.stringify(isGreen))
-//     },[isGreen])
-// // // //yellow status
-//     useEffect(()=>{
-//         localStorage.setItem('yellItem', JSON.stringify(isYell))
-//     },[isYell])
-// // //grey status
-//     useEffect(()=>{
-//         localStorage.setItem('greyItem', JSON.stringify(isGrey))
-//     },[isGrey])
- 
+    }  
 return(
     <li className="item-style" style={{backgroundColor: isRed ? '#ff6e6e47' :  '' || isGreen ? '#6eff8947' : '' || isYell ? '#e7e95e47' : '' || isGrey ? '#aea7a73d' : ''}}>
         <span style={{textDecoration: isYell ? 'underline' : '' || isGreen ? 'line-through' : '', letterSpacing: isYell ? '3px' : '', fontWeight: isYell ? 'bold' : ''}}>
@@ -69,11 +42,11 @@ return(
         {item}
         {' '}  
         {
-            isGrey && <FontAwesomeIcon icon={faEllipsisH} style={{color: "#757575"}} /> 
+            (isGrey && <FontAwesomeIcon icon={faEllipsisH} style={{color: "#757575"}} />) 
             ||
-            isGreen && <FontAwesomeIcon icon={faCheck} style={{color: "#369162"}} />
+            (isGreen && <FontAwesomeIcon icon={faCheck} style={{color: "#369162"}} />)
             ||
-            isRed && <FontAwesomeIcon icon={faXmark} style={{color: "#d01b1b"}} />
+            (isRed && <FontAwesomeIcon icon={faXmark} style={{color: "#d01b1b"}} />)
         }
         </span>
         <section className='status'>
