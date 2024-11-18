@@ -1,15 +1,8 @@
 {
-  "short_name": "eShopping list",
-  "name": "Create eShopping list App",
+  "short_name": "notes app",
+  "name": "add notes list App",
   "manifest_version": 1,
   "version": "versionString",
-  "icons": [
-    {
-      "src": "icons8-cart-96.png",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/png"
-    }
-  ],
   "default_locale": "en",
   "start_url": "/index.html",
   "display": "standalone"
