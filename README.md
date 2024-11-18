@@ -7,15 +7,17 @@ An app to arrange your thought and tasks through the day. User able to add a not
 - Node js
 
 ## Strategy
-- Function component to build UI.
-- Adding variables by using useState to store each note user enter, count number of notes.
-- useEffect to update state and localStorage.
+- Create function components to build UI and logic.
+- Use useState hook to store each note user entered and count number of notes.
+- Use useEffect hook to update state and localStorage.
 - localStorage to store notes in window.
-- Tooltip to add information when user hover the mouse.
+- Tooltip to add information when user hover.
 - Sass to create style.
 - Fontawesome to add icons.
 - Flex property to make the app responsive.
 
+### Live Link:
+notes-app-ten-pink.vercel.ap
 
   #### Future work
   create editing note function and update localStorage
