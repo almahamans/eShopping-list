@@ -8,8 +8,8 @@ import { faSun } from "@fortawesome/free-solid-svg-icons";
 
 export default function App() {
 //local storage variables
-    let itemsStorage = JSON.parse(localStorage.getItem('items')); 
-    let itemsNOStorage = JSON.parse(localStorage.getItem('countItems')); 
+    let itemsStorage = JSON.parse(localStorage.getItem('items')) || []; 
+    let itemsNOStorage = JSON.parse(localStorage.getItem('countItems')) || 0; 
 //usestate
     let [items, setItems] = useState(itemsStorage); //handle form data and any update by user; store it in array
     let [darkMode, setDarkMode] = useState(false); //to make dark theme
